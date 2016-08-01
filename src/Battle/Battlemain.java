@@ -298,8 +298,10 @@ public class Battlemain extends JPanel implements ActionListener{
 					wait(1);
 					messageboard.setMessage(hero.name + "　に　" + damage + "の　ダメージ！");
 					hero.hp = hero.hp - damage;
-					if(hero.hp<0){
+					if(hero.hp<0){//味方戦闘不能
 						hero.hp =0;
+						wait(1);
+						messageboard.setMessage(hero.name +"は　たおれた！");
 					}
 				}else{
 					wait(1);
@@ -319,7 +321,9 @@ public class Battlemain extends JPanel implements ActionListener{
 
 		}while(end < 1);
 
+		end = 0;
 		wait(1);
+		
 
 		/**
 		 * 終了処理
@@ -328,6 +332,8 @@ public class Battlemain extends JPanel implements ActionListener{
 			messageboard.setMessage("30　の　けいけんち　を　てにいれた！");
 			hero.exp = hero.exp + 30;
 			canvas.repaint();
+			messageboard.setMessage("");
+			end = 0;
 		}
 
 		s.bgmStop();
